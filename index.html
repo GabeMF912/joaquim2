@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewpot" content="widht-device-widht, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/ca14b9e588.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ca14b9e588.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="slide.css">
     <title>Projeto Joaquim</title>
 </head>
@@ -19,7 +19,7 @@
           <i class="fas fa-chevron-right"></i>
       </div>
       
-       <div id="atual" class="image">
+      <div id="atual" class="image">
           <img src="./img/Screenshot 2023-09-09 00.21.12.png" alt="">
       </div>
       <div class="image">
@@ -30,6 +30,15 @@
       </div>
       <div class="image">
           <img src="./img/Screenshot 2023-09-09 00.21.23.png" alt="">
+      </div>
+      <div class="image">
+          <img src="./img/Screenshot 2023-09-09 00.20.22.png" alt="">
+      </div>
+      <div class="image">
+          <img src="./img/Screenshot 2023-09-09 00.41.48.png" alt="">
+      </div>
+      <div class="image">
+          <img src="./img/Screenshot 2023-09-09 00.42.40.png" alt="">
       </div>
   
     </div>
@@ -46,53 +55,54 @@
   var voltar = document.getElementById('voltar')
   var rolar = true
   
-  for(let i=0; i < quant.length; i++){
+  for(let i = 0; i < quant.length; i++) {
     var div = document.createElement('div')
     div.id = i
     balls.appendChild(div)
+    div.addEventListener('click', function() {
+      atual = pos[i].id;
+      rolar = false;
+      slide();
+    });
   }
-  document.getElementById('0').classList.add('imgAtual')
+  document.getElementById('0').classList.add('imgAtual');
   
-  var pos = document.querySelectorAll('.balls > div')
+  var pos = document.querySelectorAll('.balls div')
   
-  for(let i=0; i< pos.lenght; i++){
-    pos[i].addEventListener('click', function(){
+  for(let i=0; i < pos.lenght; i++){
+    pos[i].addEventListener('click', () => {
       atual = pos[i].id
-      rolar = false
-      slide()
     })
   }
   
-  voltar.addEventListener('click', ()=>{
-    atual--
-    rolar = false
-    slide()
-  })
-  next.addEventListener('click', ()=>{
-    atual++
-    rolar = false
-    slide()
-  })
+  voltar.addEventListener('click', () => {
+    atual--;
+    rolar = false;
+    slide();
+  });
+  next.addEventListener('click', () => {
+    atual++;
+    rolar = false;
+    slide();
+  });
   
-  function slide(){
-    if(atual >= quant.lenght){
-      atual=0
+  function slide() {
+    if (atual >= quant.length) {
+      atual = 0;
+    } else if (atual < 0) {
+      atual = quant.length - 1;
     }
-    else if(atual < 0){
-      atual = quant.lenght-1
-    }
-    document.querySelector('.imgAtual').classList.remove('imgAtual')
-    imagem.style.marginLeft = -1024*atual+'px'
-    document.getElementById(atual).classList.add('imgAtual')
+    document.querySelector('.imgAtual').classList.remove('imgAtual');
+    imagem.style.marginLeft = -1024 * atual + 'px';
+    document.getElementById(atual).classList.add('imgAtual');
   }
-  setInterval(()=>{
-    if(rolar){
-      atual++
-      slide()
+  setInterval(() => {
+    if (rolar) {
+      atual++;
+      slide();
+    } else {
+      rolar = true;
     }
-    else{
-      rolar = true
-    }
-  },4000)
+  }, 4000);
 </script>
 </html>
