@@ -28,9 +28,10 @@ body {
 .slide{
 	width: 25%;
 	position: relative;
+	transition: 2s;
 }
 
-.slide{
+.slide img{
 	width: 800px;
 }
 
